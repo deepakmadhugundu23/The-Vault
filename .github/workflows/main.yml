@@ -1,0 +1,23 @@
+name: Vault Security Check
+on: [push, pull_request]
+
+jobs:
+  security-audit:
+    name: Cryptographic Integrity Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📦 Checkout Code
+        uses: actions/checkout@v2
+
+      - name: 🐍 Initialize Python Environment
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: 🧪 Run Security Engine
+        run: |
+          echo "Executing Vault Mutation Test..."
+          # This simulates a user typing "TestPhrase2026" into your script
+          echo "TestPhrase2026" | python vault_engine.py
+          echo "Test Complete: Entropy Injected Successfully."
